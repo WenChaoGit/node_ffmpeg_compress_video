@@ -1,7 +1,6 @@
 
-var ffmpeg = require('fluent-ffmpeg');
-
-let input = './cvideo/201/1.mpg';
+const  ffmpeg = require('fluent-ffmpeg');
+let videoConfig  = require('./config/video')
 module.exports = {
   transferVideo
 }
@@ -15,22 +14,22 @@ function transferVideo({
       source:input
     })
     // set video bitrate
-    .videoBitrate(256)
+    .videoBitrate(videoConfig.videoBitrate)
     // set aspect ratio
     // set size in percent
-    .size('1080x720')
+    .size(videoConfig.size)
     // set fps
-    .fps(30)
+    .fps(videoConfig.fps)
     // set audio bitrate
-    .audioBitrate(96)
+    .audioBitrate(videoConfig.audioBitrate)
     // set audio codec
-    .audioCodec('aac')
+    .audioCodec(videoConfig.audioCodec)
     // set number of audio channels
     // .audioChannels(2)
     // set custom option
     // .addOption('-vtag', 'DIVX')
     // set output format to force
-    .format('mp4')
+    .format(videoConfig.format)
     .saveToFile(output,(code,err)=>{
       console.log(`文件:${output} has been save succesfully`);
     })
