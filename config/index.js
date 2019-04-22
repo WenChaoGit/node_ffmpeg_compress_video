@@ -1,0 +1,18 @@
+module.exports={
+  //压缩参数配置
+  ffmpeg:{
+    videoBitrate:'256',
+    size:'1280x720p',
+    fps:30,
+    audioBitrate:'96k',
+    audioCodec:'aac',
+    format:'mp4',
+  },
+  //共用配置
+  common:{
+    input:'./cvideo',//待处理的视频文件夹目录
+    output:'./output_video',//压缩后的输出目录,
+    min:0,
+    max:100
+  }
+}
