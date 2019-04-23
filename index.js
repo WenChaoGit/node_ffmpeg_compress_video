@@ -8,18 +8,22 @@ let output_path = config.common.output_dir;
 //使用shell-js
 shell.ls(input_path).forEach(async (item,itemIndex) =>{
   if(itemIndex > 0 && itemIndex % 5 === 0){
-    video.sleep(1000*5);//5秒
     console.log(`文件${item}将休息5秒后执行`)
+    video.sleep(1000*5);//5秒
   }
+  //创建文件夹
+  shell.mkdir('-p',`${output_path}/${item}`);
   shell.ls(`${input_path}/${item}`).forEach((itemChild)=>{
-    console.log(itemChild);return;
-    let params = getOutputName(item,itemChild);
-    video.transferVideo(params);
+    // let params = getOutputName(item,itemChild);
+    video.transferVideo({
+      input:`${input_path}/${item}/${itemChild}`,
+      output:`${output_path}/${item}/${itemChild}.gif`
+    });
   })
 })
 
 
-function getOutputName(item,videoItem,input_ext='mpg',output_ext='mp4'){
+function getOutputName(item,videoItem,input_ext='mpg',output_ext=''){
   let outputName = videoItem.split(`.${input_ext}`);
   let output_suffix = outputName[0];
   let code_name = output_suffix.split('-');

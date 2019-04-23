@@ -6,10 +6,7 @@ module.exports = {
   sleep
 }
 
-function transferVideo({
-  input,
-  output
-}) {
+function transferVideo({input,output}) {
   try {
     var command = new ffmpeg({
       source:input
@@ -49,6 +46,14 @@ function transferVideo({
    
 }
 
+
+function videoToGif({input,output}){
+  try {
+    var command = new ffmpeg({source:input}).bitrate(256)
+  } catch (error) {
+    
+  }
+}
 
 function sleep(delay) {
   var start = (new Date()).getTime();
