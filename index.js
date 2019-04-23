@@ -7,7 +7,7 @@ let output_path = config.common.output_dir;
 
 //使用shell-js
 shell.ls(input_path).forEach(async (item,itemIndex) =>{
-  if(itemIndex % 5 === 0){
+  if(itemIndex > 0 && itemIndex % 5 === 0){
     video.sleep(1000*5);//5秒
     console.log(`文件${item}将休息5秒后执行`)
   }
