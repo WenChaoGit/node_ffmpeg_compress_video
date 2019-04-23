@@ -1,30 +1,23 @@
-var ffmpeg = require('ffmpeg');
-const fs = require('fs')
 const video = require('./video')
 const config = require('./config')
+const shell = require('shelljs');
+let input_path = config.common.input_dir;
+let output_path = config.common.output_dir;
 
-let input_path = config.common.input;
-let output_path = config.common.output;
-try{
-  let files =  fs.readdirSync(input_path);
-  files.forEach(item => {
-    if(item >=config.common.min && item <=config.common.max ){
-      let arrVideoDir = fs.readdirSync(`${input_path}/${item}`);
-      arrVideoDir.forEach(videoItem => {
-        // console.log(videoItem);
-        // fs.mkdir(`${output_path}/${item}`,{recursive:true},(err)=>{
 
-        // });
-        let params = getOutputName(item,videoItem);
-        video.transferVideo(params);
-      })
-    }
-    
+//使用shell-js
+shell.ls(input_path).forEach(async (item,itemIndex) =>{
+  if(itemIndex % 5 === 0){
+    video.sleep(1000*5);//5秒
+    console.log(`文件${item}将休息5秒后执行`)
+  }
+  shell.ls(`${input_path}/${item}`).forEach((itemChild)=>{
+    console.log(itemChild);return;
+    let params = getOutputName(item,itemChild);
+    video.transferVideo(params);
   })
-  
-}catch(err){
-  console.log(err)
-}
+})
+
 
 function getOutputName(item,videoItem,input_ext='mpg',output_ext='mp4'){
   let outputName = videoItem.split(`.${input_ext}`);

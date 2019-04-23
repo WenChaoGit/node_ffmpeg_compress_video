@@ -2,7 +2,8 @@
 const  ffmpeg = require('fluent-ffmpeg');
 let config  = require('./config')
 module.exports = {
-  transferVideo
+  transferVideo,
+  sleep
 }
 
 function transferVideo({
@@ -47,4 +48,14 @@ function transferVideo({
   }
    
 }
+
+
+function sleep(delay) {
+  var start = (new Date()).getTime();
+  while ((new Date()).getTime() - start < delay) {
+    continue;
+  }
+}
+
+
 
