@@ -14,11 +14,8 @@ shell.ls(input_path).forEach(async (item,itemIndex) =>{
   //创建文件夹
   shell.mkdir('-p',`${output_path}/${item}`);
   shell.ls(`${input_path}/${item}`).forEach((itemChild)=>{
-    // let params = getOutputName(item,itemChild);
-    video.transferVideo({
-      input:`${input_path}/${item}/${itemChild}`,
-      output:`${output_path}/${item}/${itemChild}.gif`
-    });
+    let params = getOutputName(item,itemChild);
+    video.transferVideo(params);
   })
 })
 
