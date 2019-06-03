@@ -6,7 +6,7 @@ module.exports={
     fps:30,
     audioBitrate:'96k',
     audioCodec:'aac',
-    format:'gif',
+    format:'mp4',
   },
   //共用配置
   common:{

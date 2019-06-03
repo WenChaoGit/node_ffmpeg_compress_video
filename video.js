@@ -15,7 +15,7 @@ function transferVideo({input,output}) {
     .videoBitrate(config.ffmpeg.videoBitrate)
     // set aspect ratio
     // set size in percent
-    .size(config.ffmpeg.size)
+    // .size(config.ffmpeg.size)
     // set fps
     .fps(config.ffmpeg.fps)
     // set audio bitrate
