@@ -1,3 +1,7 @@
-url = ' https://img00.yaunxinkangfu.com/11.mp4  '
-let res = url.split('.com/').pop()
-console.log(res)
+const {getVideoDuration} =  require('./lib/upload')
+
+;(async ()=>{
+  let url = 'https://img00.yuanxinkangfu.com/avthumb2/file/resource/201904/1555232924.mp4';
+  let res = await getVideoDuration(url);
+  console.log(res);
+})()

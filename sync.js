@@ -1,4 +1,4 @@
-const { Upload } = require('./lib/upload')
+const { Upload,getVideoDuration } = require('./lib/upload')
 const path = require('path')
 const shell = require('shelljs')
 let objUpload = new Upload()
@@ -20,7 +20,7 @@ const resolve = url => path.join(__dirname,url);
             console.log(`编号:${dir}  url:${url} 上传成功`);
             let video_url = {}
             video_url.url =url.split('.com/').pop();
-            video_url.duration = 42;
+            video_url.duration = getVideoDuration(url);
             arr_url[video] = video_url;            
         }
         console.log(arr_url);
