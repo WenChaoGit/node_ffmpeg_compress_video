@@ -18,13 +18,21 @@ const resolve = url => path.join(__dirname,url);
                 break;
             }
             console.log(`编号:${dir}  url:${url} 上传成功`);
-            let video_url = {}
-            video_url.url =url.split('.com/').pop();
-            video_url.duration = getVideoDuration(url);
-            arr_url[video] = video_url;            
+            let video_key = video.split('.').shift();
+            arr_url[video_key] = getVideoArrUrlItem(url);    
         }
+        // 连接数据库更新资源
         console.log(arr_url);
         // console.log(resolve(dir+'/'));return;
+    }
+
+
+    function getVideoArrUrlItem(url)
+    {
+        let video_url = {}
+        video_url.url =url.split('.com/').pop();
+        video_url.duration = getVideoDuration(url);
+        return video_url;
     }
    
 })()
