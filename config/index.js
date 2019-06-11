@@ -8,6 +8,13 @@ module.exports={
     audioCodec:'aac',
     format:'mp4',
   },
+  database:{
+    dbName:'',
+    user:'',
+    password:'',
+    host:'',
+    port:3306
+  },
   //共用配置
   common:{
     input_dir:'./bvideo',//待处理的视频文件夹目录
